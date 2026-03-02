@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MASCK</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/masck-global.css" asp-append-version="true" />
+</head>
+<body class="masck-body">
+
+    <header class="masck-header border-bottom">
+        <nav class="navbar navbar-expand-lg navbar-dark masck-nav">
+            <div class="container">
+                <a class="navbar-brand fw-bold" asp-page="/Index">MASCK</a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="nav">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-lg-2">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-page="/Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-page="/LearningTime">Learning Time</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-page="/GameQuiz">Game Quiz</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-page="/Profile">Profile</a>
+                        </li>
+                    </ul>
+
+                    <div class="d-flex align-items-center gap-2">
+                        <partial name="_LoginPartial" />
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container masck-main py-4">
+        @RenderBody()
+    </main>
+
+    <footer class="masck-footer border-top py-4 mt-5">
+        <div class="container d-flex flex-column flex-md-row justify-content-between gap-2">
+            <div class="text-muted">© @DateTime.Now.Year MASCK</div>
+            <div class="text-muted">Built with ASP.NET Razor Pages</div>
+        </div>
+    </footer>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

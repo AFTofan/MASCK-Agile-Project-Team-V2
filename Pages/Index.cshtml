@@ -1,0 +1,38 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="masck-hero mb-4">
+    <h1 class="fw-bold mb-2">MASCK Fan Engagement Platform</h1>
+    <p class="text-muted mb-0">
+        Learning content + game quiz + QR rewards. Log in, scan QR codes, and earn points.
+    </p>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-6 col-lg-4">
+        <div class="card masck-card h-100 p-3">
+            <h4 class="fw-bold">Learning Time</h4>
+            <p class="text-muted">Explore bite-size learning content and interactive prompts.</p>
+            <a class="btn btn-masck mt-auto align-self-start" asp-page="/LearningTime">Start Learning</a>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-4">
+        <div class="card masck-card h-100 p-3">
+            <h4 class="fw-bold">Game Quiz</h4>
+            <p class="text-muted">Answer quiz questions and build your score.</p>
+            <a class="btn btn-masck mt-auto align-self-start" asp-page="/GameQuiz">Play Quiz</a>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-4">
+        <div class="card masck-card h-100 p-3">
+            <h4 class="fw-bold">QR Rewards</h4>
+            <p class="text-muted">Scan a QR code while logged in and gain points.</p>
+            <a class="btn btn-masck mt-auto align-self-start" asp-page="/Profile">View Profile</a>
+        </div>
+    </div>
+</div>
