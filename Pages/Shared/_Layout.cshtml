@@ -50,7 +50,7 @@
                     @* Admin shortcut (optional) *@
                     @if (User.IsInRole("Admin"))
                     {
-                        <a class="masck-nav-link" asp-page="/Admin/QrCodes">Admin QR</a>
+                        <a class="masck-nav-link" asp-page="/Admin/QrCodes/Index">Admin QR</a>
                     }
                 </nav>
 
@@ -114,9 +114,6 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
-    
-
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

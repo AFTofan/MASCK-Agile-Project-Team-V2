@@ -3320,281 +3320,325 @@ a:focus-visible {
 .page-content {
     min-height: 60vh;
 }
+/* ===========================
+   MASCK Layout: Header / Nav / Footer
+   =========================== */
 
-/* ===== Top Nav ===== */
-.top-nav {
-    background: #0c1b3a;
-    color: #fff;
-    height: 56px;
-    display: flex;
-    align-items: center;
+.masck-header {
+    width: 100%;
 }
 
-.top-nav-inner {
-    width: min(1200px, 92%);
+/* Top bar */
+.masck-topbar {
+    background: #0b1530;
+    color: #fff;
+}
+
+.masck-topbar-inner {
+    max-width: 1200px;
     margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.ltfcplus-pill {
-    background: rgba(255,255,255,0.12);
-    color: #fff;
-    padding: 8px 14px;
-    border-radius: 10px;
-    font-weight: 700;
-    letter-spacing: .5px;
-}
-
-.top-nav-right {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.auth-buttons {
-    display: flex;
-    gap: 10px;
-}
-
-.auth-link {
-    color: #fff;
-    padding: 8px 12px;
-    border-radius: 999px;
-    border: 1px solid rgba(255,255,255,0.25);
-}
-
-.auth-link--primary {
-    background: #f36b21;
-    border-color: #f36b21;
-}
-
-/* ===== Account dropdown ===== */
-.account-dropdown {
-    position: relative;
-}
-
-.account-btn {
-    background: #f36b21;
-    border: none;
-    color: #fff;
-    padding: 10px 14px;
-    border-radius: 999px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-.account-menu {
-    position: absolute;
-    right: 0;
-    top: 110%;
-    min-width: 180px;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 16px 40px rgba(0,0,0,.16);
-    padding: 8px;
-    display: none;
-    z-index: 999;
-}
-
-    .account-menu.is-open {
-        display: block;
-    }
-
-    .account-menu a,
-    .logout-link {
-        display: block;
-        width: 100%;
-        text-align: left;
-        padding: 10px 12px;
-        border-radius: 10px;
-        color: #0c1b3a;
-        font-weight: 600;
-        background: transparent;
-        border: none;
-    }
-
-        .account-menu a:hover,
-        .logout-link:hover {
-            background: rgba(12,27,58,0.06);
-        }
-
-.logout-form {
-    margin: 0;
-}
-
-/* ===== Secondary nav ===== */
-.secondary-nav {
-    background: #fff;
-    border-bottom: 1px solid rgba(0,0,0,0.06);
-}
-
-.secondary-nav-inner {
-    width: min(1200px, 92%);
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
     height: 64px;
-}
-
-.club-logo img {
-    height: 42px;
-    width: auto;
-    display: block;
-}
-
-.secondary-links {
     display: flex;
-    gap: 18px;
     align-items: center;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-    .secondary-links a {
-        color: #0c1b3a;
-        font-weight: 700;
-    }
-
-        .secondary-links a:hover {
-            color: #f36b21;
-        }
-
-.nav-search {
-    border: none;
-    background: transparent;
-    font-size: 18px;
-    cursor: pointer;
-}
-
-/* ===== Footer ===== */
-.site-footer {
-    background: #0c1b3a;
-    color: #dbe6ff;
-    margin-top: 60px;
-}
-
-.footer-top {
-    padding: 44px 0;
-}
-
-.footer-cols {
-    width: min(1200px, 92%);
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
-}
-
-.footer-col h3 {
-    color: #fff;
-    margin-bottom: 14px;
-    font-size: 20px;
-}
-
-.footer-title {
-    font-weight: 700;
-    color: #fff;
-}
-
-.social-row {
-    display: flex;
-    gap: 10px;
-    margin: 10px 0 18px;
-}
-
-    .social-row a {
-        width: 38px;
-        height: 38px;
-        border-radius: 999px;
-        background: rgba(255,255,255,0.12);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        font-weight: 700;
-    }
-
-.app-badge {
-    display: inline-block;
-    margin-right: 10px;
-    padding: 10px 14px;
-    border-radius: 10px;
-    background: rgba(255,255,255,0.12);
-    color: #fff;
-    font-weight: 700;
-}
-
-.footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.12);
-    padding: 16px 0;
-}
-
-.footer-bottom-inner {
-    width: min(1200px, 92%);
-    margin: 0 auto;
-    display: flex;
     justify-content: space-between;
-    gap: 12px;
-    color: rgba(255,255,255,0.75);
+    padding: 0 18px;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-    .footer-cols {
-        grid-template-columns: 1fr;
-    }
-
-    .secondary-links {
-        display: none;
-    }
-    /* we can add hamburger later */
-}
-
-.masck-account {
-    display: flex;
-    gap: 14px;
-    align-items: center
-}
-
-.masck-account-btn {
+.masck-topbar-pill {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    padding: 10px 16px;
-    border-radius: 999px;
-    background: #ff6a00;
+    padding: 10px 14px;
+    border-radius: 6px;
+    background: rgba(255,255,255,.12);
     color: #fff;
     font-weight: 700;
     letter-spacing: .3px;
 }
 
-    .masck-account-btn:hover {
-        filter: brightness(.95)
+    .masck-topbar-pill:hover {
+        background: rgba(255,255,255,.18);
+        color: #fff;
     }
 
-.masck-link-btn {
-    background: transparent;
-    border: 0;
-    color: #fff;
-    font-weight: 600;
-    cursor: pointer
-}
-
-.masck-logout {
-    margin: 0
+/* Account area */
+.masck-account {
+    display: flex;
+    align-items: center;
+    gap: 14px;
 }
 
 .masck-points {
+    font-weight: 700;
+    opacity: .95;
+}
+
+.masck-link-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: .95;
+}
+
+    .masck-link-btn:hover {
+        opacity: 1;
+        text-decoration: underline;
+    }
+
+.masck-account-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #ff6a00;
+    color: #fff;
+    font-weight: 800;
+    border-radius: 999px;
+    padding: 10px 16px;
+    text-decoration: none;
+    border: none;
+}
+
+    .masck-account-btn:hover {
+        filter: brightness(1.03);
+        color: #fff;
+    }
+
+.masck-account-icon {
+    font-size: 16px;
+}
+
+.masck-caret {
+    opacity: .9;
+}
+
+/* Secondary nav */
+.masck-nav {
+    background: #fff;
+    border-bottom: 1px solid rgba(0,0,0,.08);
+}
+
+.masck-nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 18px;
+}
+
+.masck-brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #0b1530;
+    font-weight: 900;
+}
+
+.masck-brand-logo {
+    color: #ff6a00;
+    font-weight: 900;
+    letter-spacing: .6px;
+}
+
+/* Links */
+.masck-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    margin-left: 10px;
+}
+
+.masck-nav-link {
+    color: #0b1530;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 18px 4px;
+    border-bottom: 3px solid transparent;
+}
+
+    .masck-nav-link:hover {
+        color: #0b1530;
+        border-bottom-color: #ff6a00;
+    }
+
+/* Search icon on the right */
+.masck-nav-search {
+    margin-left: auto;
+    text-decoration: none;
+    color: #0b1530;
+    font-weight: 900;
+    padding: 10px 12px;
+    border-radius: 10px;
+}
+
+    .masck-nav-search:hover {
+        background: rgba(0,0,0,.05);
+    }
+
+/* Mobile toggle */
+.masck-nav-toggle {
+    display: none;
+    margin-left: auto;
+    width: 46px;
+    height: 40px;
+    border: 1px solid rgba(0,0,0,.12);
+    background: #fff;
+    border-radius: 10px;
+}
+
+    .masck-nav-toggle span {
+        display: block;
+        height: 2px;
+        width: 20px;
+        background: #0b1530;
+        margin: 5px auto;
+    }
+
+/* Mobile behavior */
+@media (max-width: 900px) {
+    .masck-nav-toggle {
+        display: block;
+    }
+
+    .masck-nav-search {
+        display: none;
+    }
+
+    .masck-nav-links {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 128px; /* 64 topbar + 64 nav */
+        background: #fff;
+        border-bottom: 1px solid rgba(0,0,0,.08);
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 18px 16px;
+        gap: 8px;
+    }
+
+        .masck-nav-links.is-open {
+            display: flex;
+        }
+
+    .masck-nav-link {
+        padding: 10px 4px;
+        width: 100%;
+    }
+}
+
+/* Main */
+.masck-main {
+    min-height: 60vh;
+}
+
+/* Footer */
+.masck-footer {
+    margin-top: 60px;
+    background: #0b1530;
+    color: #fff;
+}
+
+.masck-footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 18px 30px;
+}
+
+.masck-footer-title {
+    font-size: 30px;
+    font-weight: 900;
+    margin: 0 0 20px;
+}
+
+.masck-footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255,255,255,.12);
+}
+
+.masck-footer-col h4 {
+    font-size: 18px;
+    font-weight: 800;
+    margin: 0 0 14px;
+}
+
+.masck-footer-col a {
+    display: block;
     color: #fff;
     opacity: .9;
-    font-weight: 700
+    text-decoration: none;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,.10);
 }
+
+    .masck-footer-col a:hover {
+        opacity: 1;
+    }
+
+.masck-footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 18px;
+}
+
+.masck-lang-btn {
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.15);
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-weight: 700;
+}
+
+.masck-backtotop-wrap {
+    display: flex;
+    justify-content: center;
+    padding-top: 22px;
+}
+
+.masck-backtotop {
+    background: #ff6a00;
+    border: none;
+    color: #fff;
+    font-weight: 900;
+    padding: 12px 22px;
+    border-radius: 8px;
+}
+
+    .masck-backtotop:hover {
+        filter: brightness(1.05);
+    }
+
+@media (max-width: 900px) {
+    .masck-footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .masck-footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+
+.masck-account{display:flex;gap:14px;align-items:center}
+.masck-account-btn{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:10px 16px; border-radius:999px;
+  background:#ff6a00; color:#fff; font-weight:700; letter-spacing:.3px;
+}
+.masck-account-btn:hover{filter:brightness(.95)}
+.masck-link-btn{background:transparent;border:0;color:#fff;font-weight:600;cursor:pointer}
+.masck-logout{margin:0}
+.masck-points{color:#fff;opacity:.9;font-weight:700}
 /* ---- END main.css ---- */

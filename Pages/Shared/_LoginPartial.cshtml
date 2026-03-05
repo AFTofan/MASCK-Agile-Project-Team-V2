@@ -3,10 +3,24 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
+@{
+    int points = 0;
+
+    if (SignInManager.IsSignedIn(User))
+    {
+        var userEntity = await UserManager.GetUserAsync(User);
+        if (userEntity != null)
+        {
+            points = userEntity.Points;
+        }
+    }
+}
+
 @if (SignInManager.IsSignedIn(User))
 {
     <div class="masck-account">
-        <span class="masck-points">Points: @((User.FindFirst("Points")?.Value) ?? "0")</span>
+
+        <span class="masck-points">Points: @points</span>
 
         <a class="masck-account-btn" asp-page="/Profile">
             <span class="masck-account-icon">👤</span>
@@ -16,6 +30,7 @@
         <form class="masck-logout" asp-area="Identity" asp-page="/Account/Logout" method="post">
             <button type="submit" class="masck-link-btn">Logout</button>
         </form>
+
     </div>
 }
 else
@@ -23,10 +38,5 @@ else
     <div class="masck-account">
         <a class="masck-link-btn" asp-area="Identity" asp-page="/Account/Login">Login</a>
         <a class="masck-link-btn" asp-area="Identity" asp-page="/Account/Register">Register</a>
-
-        <a class="masck-account-btn" asp-area="Identity" asp-page="/Account/Login">
-            <span class="masck-account-icon">👤</span>
-            MY ACCOUNT <span class="masck-caret">▾</span>
-        </a>
     </div>
 }
