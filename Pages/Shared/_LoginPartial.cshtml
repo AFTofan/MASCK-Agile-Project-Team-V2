@@ -3,39 +3,30 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
-<ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
-    var appUser = await UserManager.GetUserAsync(User);
-    var points = appUser?.Points ?? 0;
+    <div class="masck-account">
+        <span class="masck-points">Points: @((User.FindFirst("Points")?.Value) ?? "0")</span>
 
-    <li class="nav-item">
-        <span class="nav-link text-dark">Points: @points</span>
-    </li>
+        <a class="masck-account-btn" asp-page="/Profile">
+            <span class="masck-account-icon">👤</span>
+            MY ACCOUNT <span class="masck-caret">▾</span>
+        </a>
 
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index">Hello @User.Identity?.Name!</a>
-    </li>
-    @if (User.IsInRole("Admin"))
-{
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-page="/Admin/QrCodes/Index">Admin QR</a>
-    </li>
-}
-    <li class="nav-item">
-        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout"
-              asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post">
-            <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+        <form class="masck-logout" asp-area="Identity" asp-page="/Account/Logout" method="post">
+            <button type="submit" class="masck-link-btn">Logout</button>
         </form>
-    </li>
+    </div>
 }
 else
 {
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>
+    <div class="masck-account">
+        <a class="masck-link-btn" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        <a class="masck-link-btn" asp-area="Identity" asp-page="/Account/Register">Register</a>
+
+        <a class="masck-account-btn" asp-area="Identity" asp-page="/Account/Login">
+            <span class="masck-account-icon">👤</span>
+            MY ACCOUNT <span class="masck-caret">▾</span>
+        </a>
+    </div>
 }
-</ul>

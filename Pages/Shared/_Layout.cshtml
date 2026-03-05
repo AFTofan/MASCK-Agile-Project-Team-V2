@@ -1,60 +1,122 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using WebApplication1.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - MASCK</title>
 
+    <!-- Keep Bootstrap if you want (optional). MASCK CSS should come AFTER it. -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/masck-global.css" asp-append-version="true" />
+
+    <!-- Your MASCK unified CSS -->
+    <link rel="stylesheet" href="~/css/masck.css" asp-append-version="true" />
 </head>
+
 <body class="masck-body">
+    <!-- Top bar (LTFC++ + Account button) -->
+    <header class="masck-header">
+        <div class="masck-topbar">
+            <div class="masck-topbar-inner">
+                <a class="masck-topbar-pill" asp-page="/Index">LTFC++</a>
 
-    <header class="masck-header border-bottom">
-        <nav class="navbar navbar-expand-lg navbar-dark masck-nav">
-            <div class="container">
-                <a class="navbar-brand fw-bold" asp-page="/Index">MASCK</a>
-
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="nav">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-lg-2">
-                        <li class="nav-item">
-                            <a class="nav-link" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-page="/LearningTime">Learning Time</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-page="/GameQuiz">Game Quiz</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-page="/Profile">Profile</a>
-                        </li>
-                    </ul>
-
-                    <div class="d-flex align-items-center gap-2">
-                        <partial name="_LoginPartial" />
-                    </div>
+                <div class="masck-topbar-right">
+                    <partial name="_LoginPartial" />
                 </div>
             </div>
-        </nav>
+        </div>
+
+        <!-- Secondary nav -->
+        <div class="masck-nav">
+            <div class="masck-nav-inner">
+                <a class="masck-brand" asp-page="/Index">
+                    <span class="masck-brand-logo">MASCK</span>
+                </a>
+
+                <button class="masck-nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+
+                <nav class="masck-nav-links" aria-label="Primary navigation">
+                    <a class="masck-nav-link" asp-page="/Index">Home</a>
+                    <a class="masck-nav-link" asp-page="/LearningTime">Learning Time</a>
+                    <a class="masck-nav-link" asp-page="/GameQuiz">Game Quiz</a>
+                    <a class="masck-nav-link" asp-page="/Profile">Profile</a>
+
+                    @* Admin shortcut (optional) *@
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a class="masck-nav-link" asp-page="/Admin/QrCodes">Admin QR</a>
+                    }
+                </nav>
+
+                <a class="masck-nav-search" href="#" aria-label="Search">
+                    <span class="masck-search-icon">⌕</span>
+                </a>
+            </div>
+        </div>
     </header>
 
-    <main class="container masck-main py-4">
+    <!-- Page content -->
+    <main class="masck-main">
         @RenderBody()
     </main>
 
-    <footer class="masck-footer border-top py-4 mt-5">
-        <div class="container d-flex flex-column flex-md-row justify-content-between gap-2">
-            <div class="text-muted">© @DateTime.Now.Year MASCK</div>
-            <div class="text-muted">Built with ASP.NET Razor Pages</div>
+    <!-- Footer -->
+    <footer class="masck-footer">
+        <div class="masck-footer-inner">
+            <div class="masck-footer-top">
+                <h3 class="masck-footer-title">Useful Links</h3>
+
+                <div class="masck-footer-grid">
+                    <div class="masck-footer-col">
+                        <h4>Policies</h4>
+                        <a href="#">Terms of Use</a>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Cookie Policy</a>
+                        <a href="#">Consent Preferences</a>
+                        <a href="#">Company Information</a>
+                    </div>
+
+                    <div class="masck-footer-col">
+                        <h4>Information</h4>
+                        <a href="#">Club</a>
+                        <a href="#">Contact Us</a>
+                        <a href="#">Careers</a>
+                        <a href="#">Accessibility</a>
+                        <a href="#">FAQs</a>
+                    </div>
+                </div>
+
+                <div class="masck-footer-bottom">
+                    <div class="masck-footer-copy">© @DateTime.Now.Year MASCK</div>
+
+                    <div class="masck-footer-lang">
+                        <button type="button" class="masck-lang-btn">
+                            🇬🇧 <span>EN</span> <span class="masck-caret">▾</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="masck-backtotop-wrap">
+                <button type="button" class="masck-backtotop" id="masckBackToTop">
+                    Back To Top <span aria-hidden="true">↑</span>
+                </button>
+            </div>
         </div>
     </footer>
 
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

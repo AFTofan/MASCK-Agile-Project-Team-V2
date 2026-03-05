@@ -4,35 +4,295 @@
     ViewData["Title"] = "Home";
 }
 
-<div class="masck-hero mb-4">
-    <h1 class="fw-bold mb-2">MASCK Fan Engagement Platform</h1>
-    <p class="text-muted mb-0">
-        Learning content + game quiz + QR rewards. Log in, scan QR codes, and earn points.
-    </p>
-</div>
+<!-- Hero Section -->
+<section class="hero">
+    <h1>Welcome to Luton Town Learning Platform</h1>
+    <p>Discover the beautiful quiz with interactive lessons and fun challenges!</p>
+</section>
 
-<div class="row g-3">
-    <div class="col-md-6 col-lg-4">
-        <div class="card masck-card h-100 p-3">
-            <h4 class="fw-bold">Learning Time</h4>
-            <p class="text-muted">Explore bite-size learning content and interactive prompts.</p>
-            <a class="btn btn-masck mt-auto align-self-start" asp-page="/LearningTime">Start Learning</a>
+<!-- Announcements Section -->
+<section class="announcements-section">
+    <div class="announcements-container">
+        <div class="announcement-badge">📢 Latest News</div>
+        <h2 class="announcements-title">What's New</h2>
+
+        <div class="announcements-list">
+            <div class="announcement-card">
+                <div class="announcement-icon">⚽</div>
+                <div class="announcement-content">
+                    <h3>New Lessons Added!</h3>
+                    <p>Learn about football basics, stadium history, and famous players with 15 interactive facts per lesson.</p>
+                    <span class="announcement-date">February 10, 2026</span>
+                </div>
+            </div>
+
+            <div class="announcement-card">
+                <div class="announcement-icon">🎮</div>
+                <div class="announcement-content">
+                    <h3>Fun Quizzes Available</h3>
+                    <p>Test your knowledge with our challenging quizzes and earn achievements!</p>
+                    <span class="announcement-date">February 8, 2026</span>
+                </div>
+            </div>
+
+            <div class="announcement-card">
+                <div class="announcement-icon">🏆</div>
+                <div class="announcement-content">
+                    <h3>Collect Achievements</h3>
+                    <p>Complete lessons and quizzes to unlock special badges and rewards.</p>
+                    <span class="announcement-date">February 5, 2026</span>
+                </div>
+            </div>
         </div>
     </div>
+</section>
 
-    <div class="col-md-6 col-lg-4">
-        <div class="card masck-card h-100 p-3">
-            <h4 class="fw-bold">Game Quiz</h4>
-            <p class="text-muted">Answer quiz questions and build your score.</p>
-            <a class="btn btn-masck mt-auto align-self-start" asp-page="/GameQuiz">Play Quiz</a>
+<!-- Call to Action Cards -->
+<section class="cta-section">
+    <div class="cta-container">
+        <h2 class="cta-heading">Ready to Start Learning?</h2>
+
+        <div class="cta-cards">
+
+            <!-- Learning Card -->
+            <a asp-page="/LearningTime" class="cta-card cta-card--learning">
+                <div class="cta-card-content">
+                    <div class="cta-icon">📚</div>
+                    <h3 class="cta-title">Let's Learn Together</h3>
+                    <p class="cta-description">Explore interactive lessons about football, tactics, history, and more!</p>
+                    <span class="cta-button">Start Learning →</span>
+                </div>
+                <div class="cta-card-bg">
+                    <div class="cta-pattern"></div>
+                </div>
+            </a>
+
+            <!-- Games Card -->
+            <a asp-page="/GameQuiz" class="cta-card cta-card--quiz">
+                <div class="cta-card-content">
+                    <div class="cta-icon">🎮</div>
+                    <h3 class="cta-title">Play Fun Games</h3>
+                    <p class="cta-description">Quizzes, puzzles, and interactive football games!</p>
+                    <span class="cta-button">Play Now →</span>
+                </div>
+                <div class="cta-card-bg">
+                    <div class="cta-pattern"></div>
+                </div>
+            </a>
+
+            <!-- Achievements Card -->
+            <a asp-page="/Profile" class="cta-card cta-card--achievements">
+                <div class="cta-card-content">
+                    <div class="cta-icon">🏆</div>
+                    <h3 class="cta-title">Earn Rewards</h3>
+                    <p class="cta-description">Complete challenges to unlock badges and climb the leaderboard!</p>
+                    <span class="cta-button">View Achievements →</span>
+                </div>
+                <div class="cta-card-bg">
+                    <div class="cta-pattern"></div>
+                </div>
+            </a>
+
         </div>
     </div>
-
-    <div class="col-md-6 col-lg-4">
-        <div class="card masck-card h-100 p-3">
-            <h4 class="fw-bold">QR Rewards</h4>
-            <p class="text-muted">Scan a QR code while logged in and gain points.</p>
-            <a class="btn btn-masck mt-auto align-self-start" asp-page="/Profile">View Profile</a>
-        </div>
+</section>
+<!-- Footer Branding (Big "WE'RE ALL LUTON" Image) -->
+<section class="footer-branding">
+    <div class="footer-branding-container">
+        <img src="~/background-image/Luton-Town-Team-Identity-Logo-Design-PNG.png"
+             alt="Luton Town branding"
+             class="footer-logo-image"
+             asp-append-version="true" />
     </div>
-</div>
+</section>
+
+<!-- Sponsors Section -->
+<section class="sponsors-block" data-testid="sponsors-block">
+
+    <!-- Principal Partners -->
+    <div class="sponsors-group sponsors-group--tier-one">
+        <div class="sponsors-title-container">
+            <h3 class="sponsors-title">Principal Partner</h3>
+        </div>
+
+        <ul class="sponsors-list">
+            <li>
+                <a href="https://capitalsky.uk/" target="_blank" rel="noreferrer" class="sponsor-link sponsor-link--tier-one">
+                    <span class="visually-hidden">Capital Sky</span>
+                    <span class="sponsor-logo">
+                        <img src="https://images.ctfassets.net/eb3hgtb96i1x/7HcXsaJy6WFjG5DKg6EPkW/099d4008bb01f4e14597ebdc7f2cb8b6/capitalskyltd_cover.jpeg?fm=webp&fit=fill&f=face&w=400&h=68"
+                             alt="Capital Sky" loading="lazy">
+                    </span>
+                </a>
+            </li>
+
+            <li>
+                <a href="https://reflo.com/" target="_blank" rel="noreferrer" class="sponsor-link sponsor-link--tier-one">
+                    <span class="visually-hidden">Reflo</span>
+                    <span class="sponsor-logo">
+                        <img src="https://images.ctfassets.net/eb3hgtb96i1x/1khtoe83NQDRvRGTNKMtme/a227abf533e7ae4900d4772a4556f5d9/REFLO_PrimaryLogo_B_RGB.png?fm=webp&fit=fill&f=face&w=400&h=74"
+                             alt="Reflo" loading="lazy">
+                    </span>
+                </a>
+            </li>
+
+            <li>
+                <a href="https://utilita.co.uk/" target="_blank" rel="noreferrer" class="sponsor-link sponsor-link--tier-one">
+                    <span class="visually-hidden">Utilita</span>
+                    <span class="sponsor-logo">
+                        <img src="https://images.ctfassets.net/eb3hgtb96i1x/5tyMGOMZUWRdfaSbuY5bMy/8d32833af8cede1b0661c0dcc997ae41/Sponsor_Utilitia__Colour_Colour_2x-1.png?fm=webp&fit=fill&f=face&w=128&h=128"
+                             alt="Utilita" loading="lazy">
+                    </span>
+                </a>
+            </li>
+
+            <li>
+                <a href="https://www.switchshop.co.uk/" target="_blank" rel="noreferrer" class="sponsor-link sponsor-link--tier-one">
+                    <span class="visually-hidden">SwitchShop</span>
+                    <span class="sponsor-logo">
+                        <img src="https://images.ctfassets.net/eb3hgtb96i1x/2x86sH7sQEK139whl2vnbi/c719b9f234591b9d53b323de4e704767/Sponsor_SwitchShop__Colour_Colour_2x-1.png?fm=webp&fit=fill&f=face&w=128&h=128"
+                             alt="SwitchShop" loading="lazy">
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Club Partners -->
+    <div class="sponsors-group">
+        <div class="sponsors-title-container">
+            <h3 class="sponsors-title">Club Partners</h3>
+        </div>
+
+        <ul class="sponsors-list">
+            <li>
+                <a href="https://www.beds.ac.uk/" target="_blank" rel="noreferrer" class="sponsor-link">
+                    <span class="visually-hidden">University of Bedfordshire</span>
+                    <span class="sponsor-logo">
+                        <img src="https://images.ctfassets.net/eb3hgtb96i1x/5ZlkNWlHxX1NpKCiT5AKH8/77a00b8b6c4bea67ca09efa76c83a0d7/UoB_colour_stacked_logo.png?fm=webp&fit=fill&f=face&w=200&h=240"
+                             alt="University of Bedfordshire" loading="lazy">
+                    </span>
+                </a>
+            </li>
+
+            <li>
+                <a href="https://www.kdw.co.uk/" target="_blank" rel="noreferrer" class="sponsor-link">
+                    <span class="visually-hidden">KDW Financial</span>
+                    <span class="sponsor-logo">
+                        <img src="https://images.ctfassets.net/eb3hgtb96i1x/3dHFH6b9aSX0JLZjG63qHv/197a3296bfe75b58717bd2402a41df5f/kdw-financial-square__002_.png?fm=webp&fit=fill&f=center&w=200&h=148"
+                             alt="KDW Financial" loading="lazy">
+                    </span>
+                </a>
+            </li>
+
+            <li>
+                <a href="https://www.thameslinkrailway.com/" target="_blank" rel="noreferrer" class="sponsor-link">
+                    <span class="visually-hidden">ThamesLink</span>
+                    <span class="sponsor-logo">
+                        <img src="https://images.ctfassets.net/eb3hgtb96i1x/6025VDar5KL3DCX8tihgVO/c33ff2dcaa636efa53088b07e4702407/Sponsor_ThamesLink__Colour_Colour_2x-1.png?fm=webp&fit=fill&f=face&w=128&h=128"
+                             alt="ThamesLink" loading="lazy">
+                    </span>
+                </a>
+            </li>
+
+            <li>
+                <a href="https://www.quinngroundworks.co.uk/" target="_blank" rel="noreferrer" class="sponsor-link">
+                    <span class="visually-hidden">Quinn Groundworks</span>
+                    <span class="sponsor-logo">
+                        <img src="https://images.ctfassets.net/eb3hgtb96i1x/7KxmBC0lC56rhMQXD6CcT1/9f6a379cee943562aa521f60eef940b2/Quinn_logo.png?fm=webp&fit=fill&f=face&w=200&h=124"
+                             alt="Quinn Groundworks" loading="lazy">
+                    </span>
+                </a>
+            </li>
+
+            <li>
+                <a href="https://www.tengtools.com/uk/" target="_blank" rel="noreferrer" class="sponsor-link">
+                    <span class="visually-hidden">TengTools</span>
+                    <span class="sponsor-logo">
+                        <img src="https://images.ctfassets.net/eb3hgtb96i1x/7DLefl6I6R4cUKUbb4nuK3/97c2522ea304a97d2911f80171df2349/Sponsor_TengTools__Colour_Colour_2x-1.png?fm=webp&fit=fill&f=face&w=128&h=128"
+                             alt="TengTools" loading="lazy">
+                    </span>
+                </a>
+            </li>
+
+            <li>
+                <div class="sponsor-link">
+                    <span class="visually-hidden">Thurlow Nunn</span>
+                    <span class="sponsor-logo">
+                        <img src="https://images.ctfassets.net/eb3hgtb96i1x/4kgSJXb4aShCVeyGRm3Lrq/c87332bbb158175b6436f80adc2eea45/Thurlow_Nunn_logo_22_No_Tag_Stacked_Blue.png?fm=webp&fit=fill&f=face&w=200&h=77"
+                             alt="Thurlow Nunn" loading="lazy">
+                    </span>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Regional Partners -->
+    <div class="sponsors-group">
+        <div class="sponsors-title-container">
+            <h3 class="sponsors-title">Regional Partners</h3>
+        </div>
+
+        <ul class="sponsors-list">
+            <li>
+                <div class="sponsor-link">
+                    <span class="visually-hidden">On Time Automotive</span>
+                    <span class="sponsor-logo">
+                        <img src="https://images.ctfassets.net/eb3hgtb96i1x/4sXWfju0HXuS3hp77SS5rB/8aec8bbcde10925c7cb2634f93653d88/ontime-automotive-color.svg?fm=webp&fit=fill&f=face&w=250&h=87"
+                             alt="On Time Automotive" loading="lazy">
+                    </span>
+                </div>
+            </li>
+
+            <li>
+                <a href="https://www.arrivabus.co.uk/beds-and-bucks" target="_blank" rel="noreferrer" class="sponsor-link">
+                    <span class="visually-hidden">Arriva</span>
+                    <span class="sponsor-logo">
+                        <img src="https://images.ctfassets.net/eb3hgtb96i1x/2fdn5OiMe7jmRUyGdcUTA8/96cc78065cfc301b6e6b4b185ad0e483/Arriva_Colour_Smaller.png?fm=webp&fit=fill&f=face&w=200&h=59"
+                             alt="Arriva" loading="lazy">
+                    </span>
+                </a>
+            </li>
+
+            <li>
+                <a href="https://www.davidlloyd.co.uk/clubs/luton/" target="_blank" rel="noreferrer" class="sponsor-link">
+                    <span class="visually-hidden">David Lloyd</span>
+                    <span class="sponsor-logo">
+                        <img src="https://images.ctfassets.net/eb3hgtb96i1x/kHCZgZuslIhBOPTgRol9g/b1ad368989b5344e500089b75e14b8bd/David_Lloyd_Black.png?fm=webp&fit=fill&f=face&w=250&h=126"
+                             alt="David Lloyd" loading="lazy">
+                    </span>
+                </a>
+            </li>
+
+            <li>
+                <a href="https://www.heineken.co.uk/" target="_blank" rel="noreferrer" class="sponsor-link">
+                    <span class="visually-hidden">Heineken</span>
+                    <span class="sponsor-logo">
+                        <img src="https://images.ctfassets.net/eb3hgtb96i1x/YYNu1piuBkSNy24TMKXdo/4f94a128a5edb14239f1974f1d53a2ee/HNK_MASTER-LOGO_CMYK_GREEN.png?fm=webp&fit=fill&f=face&w=250&h=133"
+                             alt="Heineken" loading="lazy">
+                    </span>
+                </a>
+            </li>
+
+            <li>
+                <a href="https://goprivilege.co.uk/" target="_blank" rel="noreferrer" class="sponsor-link">
+                    <span class="visually-hidden">Go Privilege</span>
+                    <span class="sponsor-logo">
+                        <img src="https://images.ctfassets.net/eb3hgtb96i1x/3evvJaQ0OcxkFLXffP8VsL/fb16f88e4407eac4d49965ee241a1b30/Go_Privilege_Logo_-_New__Large___27_.png?fm=webp&fit=fill&f=face&w=250&h=80"
+                             alt="Go Privilege" loading="lazy">
+                    </span>
+                </a>
+            </li>
+
+            <li>
+                <a href="https://www.pioneerled.uk/" target="_blank" rel="noreferrer" class="sponsor-link">
+                    <span class="visually-hidden">Pioneer LED</span>
+                    <span class="sponsor-logo">
+                        <img src="https://images.ctfassets.net/eb3hgtb96i1x/6rSXtUBDuIl18Xb8GkUmxJ/d97e86d6c3b362580e1a99377c872a16/BLACK.png?fm=webp&fit=fill&f=face&w=200&h=54"
+                             alt="Pioneer LED" loading="lazy">
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</section>
