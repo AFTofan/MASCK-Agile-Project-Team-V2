@@ -1,0 +1,53 @@
+﻿@page
+@model WebApplication1.Pages.QuizPlayModel
+@{
+    ViewData["Title"] = "Quiz Game";
+}
+
+<link rel="stylesheet" href="~/css/puzzles.css" />
+<link rel="stylesheet" href="~/css/quiz-games.css" />
+
+<div class="puzzle-game-page">
+    <div class="container">
+
+        <div class="back-btn-wrap">
+            <a href="/QuizGames" class="back-btn">← Back to Quiz Games</a>
+        </div>
+
+        <div class="quiz-top-actions">
+            <a href="/QuizPlay?id=random-ai" class="game-btn ai-btn">✨ Generate Quiz</a>
+        </div>
+
+        <div class="quiz-top-bar">
+            <h2 id="quizTitle">Quiz</h2>
+
+            <div class="quiz-top-right">
+                <div class="timer-box">Points: <span id="quizPoints">0</span></div>
+                <div class="timer-box">Score: <span id="quizScore">0</span>/10</div>
+                <div class="timer-box">Question: <span id="quizProgress">1</span>/10</div>
+            </div>
+        </div>
+
+        <div class="quiz-board-wrapper">
+            <div class="quiz-question-card">
+                <div class="quiz-question-text" id="questionText">Loading question...</div>
+                <div class="quiz-options" id="quizOptions"></div>
+            </div>
+
+            <div class="quiz-feedback" id="quizFeedback"></div>
+
+            <div class="puzzle-buttons">
+                <button type="button" id="nextQuestionBtn" class="game-btn" style="display:none;">Next Question</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.quizConfig = {
+        quizId: "@Model.Id"
+    };
+    console.log("quizConfig:", window.quizConfig);
+</script>
+
+<script src="~/js/quiz-game.js"></script>

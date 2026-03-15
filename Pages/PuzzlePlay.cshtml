@@ -1,0 +1,50 @@
+﻿@page
+@model WebApplication1.Pages.PuzzlePlayModel
+@{
+    ViewData["Title"] = "Puzzle Game";
+}
+
+<div class="puzzle-game-page">
+    <div class="container">
+
+        <div class="back-btn-wrap">
+            <a href="/Puzzles" class="back-btn">← Back to Puzzles</a>
+        </div>
+
+        <div class="puzzle-top-bar">
+            <h2 id="puzzleTitle">@Model.Title</h2>
+
+            <div style="display:flex; gap:12px; align-items:center;">
+                <div class="timer-box">Points: <span id="pointsDisplay">0</span></div>
+                <div class="timer-box">Time: <span id="timer">00:00</span></div>
+            </div>
+        </div>
+
+        <div class="puzzle-board-wrapper">
+            <div id="puzzleBoard" class="puzzle-board"></div>
+
+            <div class="workspace-label">
+                Workspace - Drag pieces here
+            </div>
+
+            <div id="piecesTray" class="pieces-tray"></div>
+        </div>
+
+        <div class="puzzle-buttons">
+            <button id="resetBtn" class="game-btn">🔄 Reset</button>
+            <button id="hintBtn" class="game-btn">💡 Hint</button>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    window.puzzleConfig = {
+        id: "@Model.Id",
+        image: "@Model.Image",
+        title: "@Model.Title",
+        difficulty: "@Model.Difficulty"
+    };
+</script>
+
+<script src="~/js/puzzle-game.js"></script>

@@ -1,0 +1,92 @@
+﻿@page
+@model WebApplication1.Pages.QuizGamesModel
+@{
+    ViewData["Title"] = "Quiz Games";
+}
+
+<link rel="stylesheet" href="~/css/puzzles.css" />
+<link rel="stylesheet" href="~/css/quiz-games.css" />
+
+<div class="puzzle-selection-page">
+    <div class="container">
+
+        <div class="back-btn-wrap">
+            <a href="/PlayGames" class="back-btn">← Back to Game Types</a>
+        </div>
+
+        <div class="section-heading text-center">
+            <h2>Quiz Games</h2>
+            <p>Complete lessons first to unlock more quizzes!</p>
+        </div>
+
+        <div class="quiz-cards-grid">
+
+            <a class="quiz-card" href="/QuizPlay?id=football-basics">
+                <div class="quiz-icon">⚽</div>
+                <h3>Football Basics</h3>
+                <div class="quiz-tags">
+                    <span class="quiz-tag easy">EASY</span>
+                    <span class="quiz-tag age">Ages: 3-5, 6-10, 11+</span>
+                </div>
+                <p>Test your knowledge with 10 AI-generated questions</p>
+                <span class="quiz-btn">🎮 Play Quiz</span>
+            </a>
+
+            <a class="quiz-card" href="/QuizPlay?id=luton-history">
+                <div class="quiz-icon">🏟️</div>
+                <h3>Luton Town History</h3>
+                <div class="quiz-tags">
+                    <span class="quiz-tag medium">MEDIUM</span>
+                    <span class="quiz-tag age">Ages: 6-10, 11+</span>
+                </div>
+                <p>Test your knowledge with 10 AI-generated questions</p>
+                <span class="quiz-btn">🎮 Play Quiz</span>
+            </a>
+
+            <a class="quiz-card" href="/QuizPlay?id=famous-players">
+                <div class="quiz-icon">⭐</div>
+                <h3>Famous Football Players</h3>
+                <div class="quiz-tags">
+                    <span class="quiz-tag medium">MEDIUM</span>
+                    <span class="quiz-tag age">Ages: 6-10, 11+</span>
+                </div>
+                <p>Test your knowledge with 10 AI-generated questions</p>
+                <span class="quiz-btn">🎮 Play Quiz</span>
+            </a>
+
+            <a class="quiz-card" href="/QuizPlay?id=stadiums-fans">
+                <div class="quiz-icon">🎉</div>
+                <h3>Stadiums & Fans</h3>
+                <div class="quiz-tags">
+                    <span class="quiz-tag easy">EASY</span>
+                    <span class="quiz-tag age">Ages: 3-5, 6-10, 11+</span>
+                </div>
+                <p>Test your knowledge with 10 AI-generated questions</p>
+                <span class="quiz-btn">🎮 Play Quiz</span>
+            </a>
+
+            <a class="quiz-card" href="/QuizPlay?id=football-tactics">
+                <div class="quiz-icon">📋</div>
+                <h3>Advanced Football Tactics</h3>
+                <div class="quiz-tags">
+                    <span class="quiz-tag hard">HARD</span>
+                    <span class="quiz-tag age">Ages: 11+</span>
+                </div>
+                <p>Test your knowledge with 10 AI-generated questions</p>
+                <span class="quiz-btn">🎮 Play Quiz</span>
+            </a>
+
+            <a class="quiz-card" href="/QuizPlay?id=football-business">
+                <div class="quiz-icon">💼</div>
+                <h3>Football Business & Finance</h3>
+                <div class="quiz-tags">
+                    <span class="quiz-tag hard">HARD</span>
+                    <span class="quiz-tag age">Ages: 11+</span>
+                </div>
+                <p>Test your knowledge with 10 AI-generated questions</p>
+                <span class="quiz-btn">🎮 Play Quiz</span>
+            </a>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+﻿@page
+@model WebApplication1.Pages.AchievementsModel
+@{
+    ViewData["Title"] = "Achievements";
+}
+
+<link rel="stylesheet" href="~/css/achievements.css" />
+
+<div class="achievements-page">
+    <div class="container">
+
+        <div class="section-heading text-center">
+            <h2>Achievements</h2>
+            <p>Unlock badges from points, quizzes, puzzles, learning and activity.</p>
+        </div>
+
+        <div class="achievement-summary">
+            <div class="summary-box">
+                <span class="summary-label">Total Points</span>
+                <span class="summary-value">@Model.TotalPoints</span>
+            </div>
+            <div class="summary-box">
+                <span class="summary-label">Unlocked</span>
+                <span class="summary-value">@Model.UnlockedCount / @Model.Achievements.Count</span>
+            </div>
+        </div>
+
+        <div class="achievements-grid">
+            @foreach (var achievement in Model.Achievements)
+            {
+                <div class="achievement-card @(achievement.Unlocked ? "unlocked" : "locked")">
+                    <div class="achievement-card-top">
+                        <div>
+                            <h3>@achievement.Title</h3>
+                            <p class="achievement-desc">@achievement.Description</p>
+                        </div>
+                        <div class="achievement-icon">@achievement.Icon</div>
+                    </div>
+
+                    <div class="achievement-card-bottom">
+                        @if (achievement.Unlocked)
+                        {
+                            <span class="achievement-badge unlocked-badge">Unlocked ✓</span>
+                        }
+                        else
+                        {
+                            <span class="achievement-badge locked-badge">Locked</span>
+                        }
+
+                        <p class="achievement-hint">@achievement.Hint</p>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>

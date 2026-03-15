@@ -1,0 +1,72 @@
+﻿@page
+@model WebApplication1.Pages.MemoryMatchModel
+@{
+    ViewData["Title"] = "Memory Match";
+}
+
+<link rel="stylesheet" href="~/css/puzzles.css" />
+<link rel="stylesheet" href="~/css/memory-match.css" />
+
+<div class="puzzle-game-page">
+    <div class="container">
+
+        <div class="back-btn-wrap">
+            <a href="/PlayGames" class="back-btn">← Back to Game Types</a>
+        </div>
+
+        <div class="memory-header-card">
+            <h1>Memory Match</h1>
+
+            <div class="memory-stats">
+                <div class="memory-stat-box">
+                    <div class="memory-stat-label">MOVES:</div>
+                    <div class="memory-stat-value" id="movesCount">0</div>
+                </div>
+
+                <div class="memory-stat-box">
+                    <div class="memory-stat-label">MATCHES:</div>
+                    <div class="memory-stat-value"><span id="matchesCount">0</span> / 10</div>
+                </div>
+
+                <div class="memory-stat-box">
+                    <div class="memory-stat-label">TIME:</div>
+                    <div class="memory-stat-value" id="memoryTimer">00:00</div>
+                </div>
+
+                <div class="memory-stat-box">
+                    <div class="memory-stat-label">POINTS:</div>
+                    <div class="memory-stat-value" id="memoryPoints">0</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="memory-board-wrapper">
+            <div id="memoryGrid" class="memory-grid"></div>
+        </div>
+
+        <div class="puzzle-buttons">
+            <button id="newGameBtn" class="game-btn">🔄 New Game</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.memoryMatchConfig = {
+        gameId: "memory-match",
+        totalPairs: 10,
+        images: [
+            "/images/memory/1.png",
+            "/images/memory/2.png",
+            "/images/memory/3.png",
+            "/images/memory/4.png",
+            "/images/memory/5.png",
+            "/images/memory/6.png",
+            "/images/memory/7.png",
+            "/images/memory/8.png",
+            "/images/memory/9.png",
+            "/images/memory/10.png"
+        ]
+    };
+</script>
+
+<script src="~/js/memory-match.js"></script>

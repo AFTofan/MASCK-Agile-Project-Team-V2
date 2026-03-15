@@ -12,7 +12,10 @@
 
     <!-- Keep Bootstrap if you want (optional). MASCK CSS should come AFTER it. -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/puzzles.css" />
 
+    <link rel="stylesheet" href="~/css/qr-admin.css" />
+    <link rel="stylesheet" href="~/css/profile-page.css" />
     <!-- Your MASCK unified CSS -->
     <link rel="stylesheet" href="~/css/masck.css" asp-append-version="true" />
 </head>
@@ -44,7 +47,7 @@
                 <nav class="masck-nav-links" aria-label="Primary navigation">
                     <a class="masck-nav-link" asp-page="/Index">Home</a>
                     <a class="masck-nav-link" asp-page="/LearningTime">Learning Time</a>
-                    <a class="masck-nav-link" asp-page="/GameQuiz">Game Quiz</a>
+                    <a class="masck-nav-link" asp-page="/PlayGames">Game Quiz</a>
                     <a class="masck-nav-link" asp-page="/Profile">Profile</a>
 
                     @* Admin shortcut (optional) *@
@@ -115,5 +118,24 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    @if (TempData["QrPopupMessage"] != null)
+{
+    <div id="qr-popup" class="qr-popup @(TempData["QrPopupType"] ?? "success")">
+        <span>@TempData["QrPopupMessage"]</span>
+        <button type="button" onclick="document.getElementById('qr-popup').remove()">×</button>
+    </div>
+
+    <script>
+        setTimeout(function () {
+            const popup = document.getElementById('qr-popup');
+            if (popup) popup.classList.add('show');
+        }, 100);
+
+        setTimeout(function () {
+            const popup = document.getElementById('qr-popup');
+            if (popup) popup.remove();
+        }, 4000);
+    </script>
+}
 </body>
 </html>

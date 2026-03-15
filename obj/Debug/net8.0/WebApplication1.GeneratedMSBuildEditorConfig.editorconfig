@@ -1,11 +1,19 @@
 is_global = true
 build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
 build_property.TargetPlatformMinVersion = 
 build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
 build_property.PlatformNeutralAssembly = 
 build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = WebApplication1
 build_property.RootNamespace = WebApplication1
@@ -20,8 +28,24 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
+[C:/Users/Compu/Desktop/Asp.Net.MACK/WebApplication1/WebApplication1/Areas/Identity/Pages/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Compu/Desktop/Asp.Net.MACK/WebApplication1/WebApplication1/Areas/Identity/Pages/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Compu/Desktop/Asp.Net.MACK/WebApplication1/WebApplication1/Areas/Identity/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Compu/Desktop/Asp.Net.MACK/WebApplication1/WebApplication1/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Compu/Desktop/Asp.Net.MACK/WebApplication1/WebApplication1/Pages/Achievements.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNoaWV2ZW1lbnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Compu/Desktop/Asp.Net.MACK/WebApplication1/WebApplication1/Pages/Admin/QrCodes/Index.cshtml]
@@ -32,16 +56,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Compu/Desktop/Asp.Net.MACK/WebApplication1/WebApplication1/Pages/GameQuiz.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2FtZVF1aXouY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/Compu/Desktop/Asp.Net.MACK/WebApplication1/WebApplication1/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Compu/Desktop/Asp.Net.MACK/WebApplication1/WebApplication1/Pages/LearningTime.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGVhcm5pbmdUaW1lLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Compu/Desktop/Asp.Net.MACK/WebApplication1/WebApplication1/Pages/MemoryMatch.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWVtb3J5TWF0Y2guY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Compu/Desktop/Asp.Net.MACK/WebApplication1/WebApplication1/Pages/PlayerCard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGxheWVyQ2FyZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Compu/Desktop/Asp.Net.MACK/WebApplication1/WebApplication1/Pages/PlayGames.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGxheUdhbWVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Compu/Desktop/Asp.Net.MACK/WebApplication1/WebApplication1/Pages/Privacy.cshtml]
@@ -52,8 +84,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZmlsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Compu/Desktop/Asp.Net.MACK/WebApplication1/WebApplication1/Pages/PuzzlePlay.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHV6emxlUGxheS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Compu/Desktop/Asp.Net.MACK/WebApplication1/WebApplication1/Pages/Puzzles.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHV6emxlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Compu/Desktop/Asp.Net.MACK/WebApplication1/WebApplication1/Pages/Qr/Claim.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUXJcQ2xhaW0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Compu/Desktop/Asp.Net.MACK/WebApplication1/WebApplication1/Pages/QuizGames.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUXVpekdhbWVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Compu/Desktop/Asp.Net.MACK/WebApplication1/WebApplication1/Pages/QuizPlay.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUXVpelBsYXkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Compu/Desktop/Asp.Net.MACK/WebApplication1/WebApplication1/Pages/Shared/_LoginPartial.cshtml]

@@ -23,21 +23,21 @@ namespace WebApplication1.Pages.Qr
         [BindProperty(SupportsGet = true)]
         public string? Code { get; set; }
 
-        public string Message { get; private set; } = "";
-
         public async Task<IActionResult> OnGetAsync()
         {
             if (string.IsNullOrWhiteSpace(Code))
             {
-                Message = "Invalid QR code.";
-                return Page();
+                TempData["QrPopupMessage"] = "Invalid QR code.";
+                TempData["QrPopupType"] = "error";
+                return Redirect("/PlayGames");
             }
 
             var qr = await _db.QrCodes.FirstOrDefaultAsync(q => q.Code == Code && q.IsActive);
             if (qr == null)
             {
-                Message = "This QR code is not valid.";
-                return Page();
+                TempData["QrPopupMessage"] = "This QR code is not valid.";
+                TempData["QrPopupType"] = "error";
+                return Redirect("/PlayGames");
             }
 
             var user = await _userManager.GetUserAsync(User);
@@ -46,19 +46,31 @@ namespace WebApplication1.Pages.Qr
             var alreadyClaimed = await _db.QrClaims.AnyAsync(c => c.UserId == user.Id && c.QrCodeId == qr.Id);
             if (alreadyClaimed)
             {
-                Message = "You already claimed this QR code.";
-                return Page();
+                TempData["QrPopupMessage"] = $"You already claimed \"{(string.IsNullOrWhiteSpace(qr.Title) ? qr.Code : qr.Title)}\".";
+                TempData["QrPopupType"] = "info";
+                return Redirect(string.IsNullOrWhiteSpace(qr.RedirectUrl) ? "/PlayGames" : qr.RedirectUrl);
             }
 
             user.Points += qr.PointsValue;
 
-            _db.QrClaims.Add(new QrClaim { UserId = user.Id, QrCodeId = qr.Id });
+            _db.QrClaims.Add(new QrClaim
+            {
+                UserId = user.Id,
+                QrCodeId = qr.Id
+            });
 
             await _userManager.UpdateAsync(user);
             await _db.SaveChangesAsync();
 
-            Message = $"Success! +{qr.PointsValue} points. Total: {user.Points}";
-            return Page();
+            TempData["QrPopupMessage"] = $"+{qr.PointsValue} points added to your account!";
+            TempData["QrPopupType"] = "success";
+
+            if (string.IsNullOrWhiteSpace(qr.RedirectUrl))
+            {
+                return Redirect("/PlayGames");
+            }
+
+            return Redirect(qr.RedirectUrl);
         }
     }
 }

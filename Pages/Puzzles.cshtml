@@ -1,0 +1,50 @@
+﻿@page
+@model WebApplication1.Pages.PuzzlesModel
+
+<div class="puzzle-selection-page">
+    <div class="container">
+
+        <div class="section-heading text-center">
+            <h2>Puzzles</h2>
+            <p>Drag pieces to complete the picture!</p>
+        </div>
+
+        <div class="puzzle-cards-grid">
+
+            <a class="puzzle-card"
+               href="/PuzzlePlay?id=kenilworth-road&image=/images/puzzles/kenilworth.jpg&title=Kenilworth%20Road&difficulty=easy">
+
+                <img src="/images/puzzles/kenilworth.jpg" />
+
+                <div class="puzzle-card-body">
+                    <h3>Kenilworth Road</h3>
+                    <span class="difficulty-badge easy">EASY - 12 PIECES</span>
+                </div>
+            </a>
+
+            <a class="puzzle-card"
+               href="/PuzzlePlay?id=team-celebration&image=/images/puzzles/celebration.jpg&title=Team%20Celebration&difficulty=medium">
+
+                <img src="/images/puzzles/celebration.jpg" />
+
+                <div class="puzzle-card-body">
+                    <h3>Team Celebration</h3>
+                    <span class="difficulty-badge medium">MEDIUM - 24 PIECES</span>
+                </div>
+            </a>
+
+            <a class="puzzle-card"
+               href="/PuzzlePlay?id=club-badge&image=/images/puzzles/badge.jpg&title=Club%20Badge&difficulty=hard">
+
+                <img src="/images/puzzles/badge.jpg" />
+
+                <div class="puzzle-card-body">
+                    <h3>Club Badge</h3>
+                    <span class="difficulty-badge hard">HARD - 48 PIECES</span>
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+</div>

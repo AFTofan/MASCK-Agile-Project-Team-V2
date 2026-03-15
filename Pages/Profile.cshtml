@@ -4,83 +4,170 @@
     ViewData["Title"] = "Profile";
 }
 
-<div class="masck-hero mb-4">
-    <div class="d-flex flex-column flex-md-row justify-content-between gap-3 align-items-md-center">
-        <div>
-            <h1 class="fw-bold mb-1">Profile</h1>
-            <div class="text-muted">Your account, points, and reward history.</div>
+<link rel="stylesheet" href="~/css/profile-page.css" />
+
+<div class="profile-page">
+    <div class="container">
+
+        <div class="section-heading text-center mb-4">
+            <h2>Profile</h2>
+            <p>Your account, points, avatar, and reward history.</p>
         </div>
 
-        <div class="masck-points-big">
-            <div class="text-muted small">Total Points</div>
-            <div class="fw-bold" style="font-size:32px; line-height:1;">
-                @(Model.CurrentUser?.Points ?? 0)
+        <div class="profile-summary-row">
+            <div class="profile-summary-box">
+                <span class="summary-label">Total Points</span>
+                <span class="summary-value">@(Model.CurrentUser?.Points ?? 0)</span>
+            </div>
+
+            <div class="profile-summary-box">
+                <span class="summary-label">QR Claims</span>
+                <span class="summary-value">@Model.Claims.Count</span>
+            </div>
+
+            <div class="profile-summary-box">
+                <span class="summary-label">Display Name</span>
+                <span class="summary-value small-value">@Model.DisplayName</span>
             </div>
         </div>
-    </div>
-</div>
 
-<div class="row g-3">
-    <div class="col-lg-4">
-        <div class="card masck-card p-4 h-100">
-            <h5 class="fw-bold mb-3">Account</h5>
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="profile-card h-100">
+                    <div class="profile-card-header">
+                        <h4>Account</h4>
+                        <p>Your personal details and avatar.</p>
+                    </div>
 
-            <div class="mb-2">
-                <div class="text-muted small">Signed in as</div>
-                <div class="fw-bold">@User.Identity?.Name</div>
-            </div>
+                    <div class="profile-user-top">
+                        @if (!string.IsNullOrWhiteSpace(Model.AvatarUrl))
+                        {
+                            <img src="@Model.AvatarUrl" alt="avatar" class="profile-avatar" />
+                        }
+                        else
+                        {
+                            <div class="profile-avatar profile-avatar-placeholder">
+                                @Model.DisplayName.Substring(0, 1).ToUpper()
+                            </div>
+                        }
 
-            <div class="mb-3">
-                <div class="text-muted small">Email</div>
-                <div>@(Model.CurrentUser?.Email ?? "-")</div>
-            </div>
+                        <div class="profile-user-meta">
+                            <div class="profile-display-name">@Model.DisplayName</div>
+                            <div class="profile-email">@(Model.CurrentUser?.Email ?? "-")</div>
+                            <div class="profile-signed-in">Signed in as @User.Identity?.Name</div>
+                        </div>
+                    </div>
 
-            <div class="d-grid gap-2">
-                <a class="btn btn-masck" asp-area="Identity" asp-page="/Account/Manage/Index">
-                    Manage Account
-                </a>
-                <a class="btn btn-masck-secondary" asp-page="/Qr/Claim">
-                    Claim QR (enter code)
-                </a>
-            </div>
-        </div>
-    </div>
+                    <div class="profile-inner-card">
+                        <h5>Edit Profile</h5>
 
-    <div class="col-lg-8">
-        <div class="card masck-card p-4 h-100">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <h5 class="fw-bold mb-0">QR Claim History</h5>
-                <div class="text-muted">Total claims: <span class="fw-bold">@Model.Claims.Count</span></div>
-            </div>
+                        <form method="post" enctype="multipart/form-data" class="profile-form">
+                            <div class="form-group">
+                                <label class="profile-label">Nickname</label>
+                                <input asp-for="Input.Nickname" class="form-control profile-input" placeholder="e.g. Alex" />
+                                <span asp-validation-for="Input.Nickname" class="text-danger small"></span>
+                            </div>
 
-            @if (Model.Claims.Count == 0)
-            {
-                <div class="text-muted">No QR codes claimed yet. Scan one while logged in to earn points.</div>
-            }
-            else
-            {
-                <div class="table-responsive">
-                    <table class="table masck-table align-middle mb-0">
-                        <thead>
-                            <tr>
-                                <th>Code</th>
-                                <th style="width:120px;">Points</th>
-                                <th style="width:220px;">Claimed</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var c in Model.Claims)
+                            <div class="form-group">
+                                <label class="profile-label">Date of Birth</label>
+                                <input asp-for="Input.DateOfBirth" type="date" class="form-control profile-input" />
+                                <span asp-validation-for="Input.DateOfBirth" class="text-danger small"></span>
+                            </div>
+
+                            @if (Model.RequiresParentalConsent)
                             {
-                                <tr>
-                                    <td><span class="masck-code">@c.Code</span></td>
-                                    <td class="fw-bold">+@c.Points</td>
-                                    <td class="text-muted">@c.ClaimedAtUtc.ToLocalTime().ToString("dd MMM yyyy, HH:mm")</td>
-                                </tr>
+                                <label class="profile-consent-row">
+                                    <input asp-for="Input.ParentalConsent" type="checkbox" />
+                                    <span>
+                                        I confirm I have parental/guardian consent to use this platform.
+                                        <span asp-validation-for="Input.ParentalConsent" class="text-danger small d-block mt-1"></span>
+                                    </span>
+                                </label>
                             }
-                        </tbody>
-                    </table>
+
+                            <div class="form-group">
+                                <label class="profile-label">Avatar</label>
+                                <input asp-for="Input.AvatarFile" type="file" class="form-control profile-input" />
+                                <span asp-validation-for="Input.AvatarFile" class="text-danger small"></span>
+                            </div>
+
+                            <button type="submit" class="btn profile-primary-btn">Save Profile</button>
+
+                            @if (!string.IsNullOrWhiteSpace(Model.StatusMessage))
+                            {
+                                <div class="profile-success-msg">@Model.StatusMessage</div>
+                            }
+                        </form>
+                    </div>
+
+                    <div class="profile-actions">
+                        <a class="btn profile-primary-btn" asp-area="Identity" asp-page="/Account/Manage/Index">
+                            Manage Account
+                        </a>
+                        <a class="btn profile-secondary-btn" asp-page="/Qr/Claim">
+                            Claim QR (enter code)
+                        </a>
+                    </div>
                 </div>
-            }
+            </div>
+
+            <div class="col-lg-8">
+                <div class="profile-card h-100">
+                    <div class="profile-card-header profile-card-header-row">
+                        <div>
+                            <h4>QR Claim History</h4>
+                            <p>Your reward activity and claimed QR codes.</p>
+                        </div>
+                        <div class="profile-history-count">
+                            Total claims: <strong>@Model.Claims.Count</strong>
+                        </div>
+                    </div>
+
+                    @if (Model.Claims.Count == 0)
+                    {
+                        <div class="profile-empty-state">
+                            <div class="empty-icon">📷</div>
+                            <h5>No QR codes claimed yet</h5>
+                            <p>Scan or enter a QR code while logged in to earn points and rewards.</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="table-responsive">
+                            <table class="table profile-table align-middle mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Code</th>
+                                        <th style="width:140px;">Points</th>
+                                        <th style="width:240px;">Claimed</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var c in Model.Claims)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <span class="profile-code-pill">@c.Code</span>
+                                            </td>
+                                            <td>
+                                                <span class="profile-points-pill">+@c.Points</span>
+                                            </td>
+                                            <td class="text-muted">
+                                                @c.ClaimedAtUtc.ToLocalTime().ToString("dd MMM yyyy, HH:mm")
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                </div>
+            </div>
         </div>
+
     </div>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

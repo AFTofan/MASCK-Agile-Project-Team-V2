@@ -1,0 +1,52 @@
+﻿@page
+@model WebApplication1.Pages.PlayerCardModel
+@{
+    ViewData["Title"] = "Player Card";
+}
+
+<link rel="stylesheet" href="~/css/player-card.css" />
+
+<div class="player-card-page">
+    <div class="container">
+
+        <div class="back-btn-wrap">
+            <a href="/PlayGames" class="back-btn">← Back to Game Types</a>
+        </div>
+
+        <div class="section-heading text-center">
+            <h2>Create Your Luton Town Player Card</h2>
+            <p>Upload your photo and create a unique football trading card!</p>
+        </div>
+
+        <div class="player-card-builder">
+            <div class="upload-panel">
+                <label for="photoUpload" class="upload-box" id="uploadBox">
+                    <span class="upload-icon">📷</span>
+                    <strong>Upload Your Photo</strong>
+                    <span>Click to select or drag & drop</span>
+                </label>
+                <input type="file" id="photoUpload" accept="image/*" hidden />
+
+                <label class="input-label" for="playerName">Player Name</label>
+                <input type="text" id="playerName" class="player-input" placeholder="Enter your name" maxlength="24" />
+
+                <div class="builder-buttons">
+                    <button type="button" id="generateCardBtn" class="generate-btn">✨ Generate Random Card</button>
+                    <button type="button" id="downloadCardBtn" class="download-btn">⬇ Download Card</button>
+                </div>
+            </div>
+
+            <div class="card-preview-panel">
+                <canvas id="playerCardCanvas" width="420" height="650"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.playerCardAssets = {
+        badge: "/images/playercard/luton-badge.png",
+       
+</script>
+
+<script src="~/js/player-card.js"></script>

@@ -16,7 +16,12 @@ builder.Services
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddRazorPages();
-
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 var app = builder.Build();
 
 // Apply migrations + seed admin role/user + seed default QR code
@@ -49,7 +54,11 @@ using (var scope = app.Services.CreateScope())
                 await userManager.RemoveFromRoleAsync(u, adminRole);
         }
     }
+    // Add services
+  
 
+    // after app.UseRouting();
+    app.UseSession();
     // ---- Seed a default QR code for testing ----
     if (!db.QrCodes.Any(q => q.Code == "MASCK10"))
     {
@@ -68,6 +77,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseSession();                                                                                                                                                                                                            
 app.UseAuthentication();
 app.UseAuthorization();
 

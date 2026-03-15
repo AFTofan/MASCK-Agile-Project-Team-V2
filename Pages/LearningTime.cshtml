@@ -1,33 +1,43 @@
 ﻿@page
-@model PageModel
+@model WebApplication1.Pages.LearningTimeModel
 @{
     ViewData["Title"] = "Learning Time";
 }
 
-<div class="card masck-card p-4">
-    <h2 class="fw-bold mb-2">Learning Time</h2>
-    <p class="text-muted">Type a topic or question and generate content (we’ll wire the backend AI next).</p>
-
-    <div class="row g-3 align-items-end mt-2">
-        <div class="col-md-9">
-            <label class="form-label text-muted">Topic / Question</label>
-            <input id="lt-input" class="form-control input-masck" placeholder="e.g. LTFC history, stadium facts, match rules..." />
-        </div>
-        <div class="col-md-3 d-grid">
-            <button id="lt-generate" class="btn btn-masck">Generate</button>
-        </div>
-    </div>
-
-    <hr class="my-4" style="border-color: rgba(255,255,255,.08);" />
-
-    <div>
-        <h5 class="fw-bold">Output</h5>
-        <div id="lt-output" class="p-3 rounded" style="background: rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); min-height: 140px;">
-            <span class="text-muted">Your content will appear here…</span>
-        </div>
-    </div>
+<div class="masck-hero mb-4">
+    <h1 class="fw-bold mb-1">Learning Time</h1>
+    <div class="text-muted">Complete lessons to earn points (each lesson can be completed once).</div>
 </div>
 
-@section Scripts {
-    <script src="~/js/learning-time.js" asp-append-version="true"></script>
+@if (!string.IsNullOrWhiteSpace(Model.Message))
+{
+    <div class="alert alert-success">@Model.Message</div>
 }
+
+<div class="row g-3">
+    @foreach (var lesson in Model.Lessons)
+    {
+        <div class="col-md-6 col-lg-4">
+            <div class="card masck-card p-4 h-100">
+                <h5 class="fw-bold">@lesson.Title</h5>
+                <p class="text-muted mb-3">@lesson.Description</p>
+
+                <div class="d-flex justify-content-between align-items-center mt-auto">
+                    <span class="badge bg-light text-dark">+@lesson.Points pts</span>
+
+                    @if (lesson.IsCompleted)
+                    {
+                        <span class="text-success fw-bold">Completed ✅</span>
+                    }
+                    else
+                    {
+                        <form method="post">
+                            <input type="hidden" name="lessonKey" value="@lesson.Key" />
+                            <button class="btn btn-masck" type="submit">Complete</button>
+                        </form>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

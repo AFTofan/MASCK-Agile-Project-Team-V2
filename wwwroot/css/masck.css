@@ -3642,3 +3642,250 @@ a:focus-visible {
 .masck-logout{margin:0}
 .masck-points{color:#fff;opacity:.9;font-weight:700}
 /* ---- END main.css ---- */
+
+
+/* ===== Auth (Login/Register) ===== */
+.masck-auth {
+    padding: 40px 16px 80px;
+}
+
+.masck-auth-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+@media (min-width: 992px) {
+    .masck-auth-inner {
+        grid-template-columns: 1fr 0.9fr;
+        align-items: start;
+    }
+}
+
+.masck-auth-card {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 18px 50px rgba(0,0,0,.08);
+    padding: 26px;
+}
+
+.masck-auth-card--secondary {
+    background: rgba(255,255,255,0.92);
+}
+
+.masck-auth-header {
+    margin-bottom: 16px;
+}
+
+.masck-auth-title {
+    margin: 0;
+    font-weight: 800;
+    font-size: 32px;
+    letter-spacing: -0.5px;
+}
+
+.masck-auth-subtitle {
+    margin: 6px 0 0;
+    color: rgba(17, 24, 39, 0.65);
+}
+
+.masck-form-group {
+    margin-bottom: 14px;
+}
+
+.masck-label {
+    font-weight: 700;
+    margin-bottom: 6px;
+    display: inline-block;
+}
+
+.masck-input {
+    border-radius: 12px;
+    padding: 12px 12px;
+}
+
+.masck-auth-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 8px 0 16px;
+}
+
+.masck-checkbox {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: rgba(17, 24, 39, 0.8);
+}
+
+.masck-auth-link {
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.masck-auth-divider {
+    margin: 18px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(17, 24, 39, 0.55);
+    font-weight: 700;
+    font-size: 13px;
+}
+
+    .masck-auth-divider::before,
+    .masck-auth-divider::after {
+        content: "";
+        height: 1px;
+        background: rgba(17, 24, 39, 0.12);
+        flex: 1;
+    }
+
+.masck-auth-actions {
+    margin-top: 0;
+}
+
+.masck-auth-alt-title {
+    margin: 0 0 12px;
+    font-weight: 800;
+    font-size: 18px;
+}
+
+
+
+
+
+
+
+
+
+.games-page {
+    background-color: #f2f2f4;
+    min-height: 100vh;
+}
+
+/* HERO */
+.games-hero {
+    background: linear-gradient(90deg, #df4a00 0%, #7a2b1d 55%, #1e1a44 100%);
+    border-top: 4px solid #ffffff;
+    border-bottom: 4px solid #f28b50;
+    padding: 70px 20px 60px;
+    text-align: center;
+}
+
+    .games-hero h1 {
+        color: #ffffff;
+        font-size: 3.2rem;
+        font-weight: 800;
+        margin-bottom: 12px;
+        line-height: 1.2;
+    }
+
+    .games-hero p {
+        color: #f6e7df;
+        font-size: 1.1rem;
+        margin: 0;
+    }
+
+.gamepad {
+    font-size: 2.4rem;
+    vertical-align: middle;
+}
+
+/* MAIN SECTION */
+.games-content {
+    padding: 70px 20px 100px;
+}
+
+.section-heading h2 {
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: #0e2454;
+    margin-bottom: 10px;
+}
+
+.section-heading p {
+    color: #7a7f8f;
+    font-size: 1.05rem;
+    margin-bottom: 45px;
+}
+
+/* CARD GRID */
+.games-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 26px;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+/* CARD */
+.game-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 42px 28px;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e6e6e6;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    min-height: 290px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+    .game-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 26px rgba(0, 0, 0, 0.12);
+    }
+
+.card-icon {
+    font-size: 3.1rem;
+    margin-bottom: 22px;
+}
+
+.game-card h3 {
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: #0c2250;
+    margin-bottom: 14px;
+}
+
+.game-card p {
+    font-size: 1rem;
+    color: #6f7685;
+    line-height: 1.6;
+    margin-bottom: 22px;
+    max-width: 230px;
+}
+
+.card-badge {
+    display: inline-block;
+    background: #f3d77a;
+    color: #9a6400;
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .games-hero h1 {
+        font-size: 2.4rem;
+    }
+
+    .section-heading h2 {
+        font-size: 2rem;
+    }
+
+    .game-card h3 {
+        font-size: 1.5rem;
+    }
+}

@@ -18,6 +18,9 @@ namespace WebApplication1.Pages.Admin.QrCodes
         public List<QrCode> Codes { get; private set; } = [];
 
         [BindProperty]
+        public string? Title { get; set; }
+
+        [BindProperty]
         public string? CustomCode { get; set; }
 
         [BindProperty]
@@ -25,6 +28,9 @@ namespace WebApplication1.Pages.Admin.QrCodes
 
         [BindProperty]
         public bool IsActive { get; set; } = true;
+
+        [BindProperty]
+        public string? RedirectUrl { get; set; } = "/PlayGames";
 
         public async Task OnGetAsync()
         {
@@ -36,11 +42,24 @@ namespace WebApplication1.Pages.Admin.QrCodes
         public async Task<IActionResult> OnPostCreateAsync()
         {
             var code = (CustomCode ?? "").Trim();
+            var qrTitle = string.IsNullOrWhiteSpace(Title) ? "QR Reward" : Title.Trim();
+            var redirect = string.IsNullOrWhiteSpace(RedirectUrl) ? "/PlayGames" : RedirectUrl.Trim();
 
             if (string.IsNullOrWhiteSpace(code))
-                code = GenerateCode(10); // random code length 10
+                code = GenerateCode(10);
 
-            // Ensure unique
+            bool isLocal = Url.IsLocalUrl(redirect);
+
+            bool isAbsoluteHttp = Uri.TryCreate(redirect, UriKind.Absolute, out var uri)
+                                  && (uri.Scheme == Uri.UriSchemeHttps || uri.Scheme == Uri.UriSchemeHttp);
+
+            if (!isLocal && !isAbsoluteHttp)
+            {
+                ModelState.AddModelError("", "Redirect URL must be a valid page or URL.");
+                await OnGetAsync();
+                return Page();
+            }
+
             var exists = await _db.QrCodes.AnyAsync(q => q.Code == code);
             if (exists)
             {
@@ -51,9 +70,11 @@ namespace WebApplication1.Pages.Admin.QrCodes
 
             _db.QrCodes.Add(new QrCode
             {
+                Title = qrTitle,
                 Code = code,
                 PointsValue = PointsValue <= 0 ? 10 : PointsValue,
-                IsActive = IsActive
+                IsActive = IsActive,
+                RedirectUrl = redirect
             });
 
             await _db.SaveChangesAsync();
@@ -76,7 +97,6 @@ namespace WebApplication1.Pages.Admin.QrCodes
             var qr = await _db.QrCodes.FirstOrDefaultAsync(q => q.Id == id);
             if (qr == null) return RedirectToPage();
 
-            // Optional safety: if any claims exist, you can prevent delete.
             var hasClaims = await _db.QrClaims.AnyAsync(c => c.QrCodeId == id);
             if (hasClaims)
             {
@@ -93,7 +113,7 @@ namespace WebApplication1.Pages.Admin.QrCodes
 
         private static string GenerateCode(int length)
         {
-            const string alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // no confusing 0/O/1/I
+            const string alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
             var bytes = RandomNumberGenerator.GetBytes(length);
             var chars = new char[length];
 

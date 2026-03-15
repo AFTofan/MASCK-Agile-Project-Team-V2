@@ -7,7 +7,7 @@ namespace WebApplication1.Data
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
-
+        public DbSet<LessonCompletion> LessonCompletions => Set<LessonCompletion>();
         public DbSet<QrCode> QrCodes => Set<QrCode>();
         public DbSet<QrClaim> QrClaims => Set<QrClaim>();
 

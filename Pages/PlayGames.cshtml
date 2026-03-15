@@ -1,0 +1,53 @@
+﻿@page
+@model WebApplication1.Pages.PlayGamesModel
+@{
+    ViewData["Title"] = "Play Games";
+}
+
+<div class="games-page">
+    <section class="games-hero">
+        <div class="container text-center">
+            <h1>Fun Activity <span class="gamepad">🎮</span></h1>
+            <p>Play exciting games, solve puzzles, and test your football knowledge!</p>
+        </div>
+    </section>
+
+    <section class="games-content">
+        <div class="container">
+            <div class="section-heading text-center">
+                <h2>Choose Your Activity Type</h2>
+                <p>Multiple ways to learn and have fun!</p>
+            </div>
+
+            <div class="games-card-grid">
+                <a href="/QuizGames" class="game-card">
+                    <div class="card-icon">🧠</div>
+                    <h3>Quiz Games</h3>
+                    <p>Test your knowledge with generated questions</p>
+                    <span class="card-badge">6 Quizzes</span>
+                </a>
+
+                <a href="/Puzzles" class="game-card">
+                    <div class="card-icon">🧩</div>
+                    <h3>Puzzles</h3>
+                    <p>Complete puzzles with football images</p>
+                    <span class="card-badge">Easy, Medium, Hard</span>
+                </a>
+
+                <a href="/PlayerCard" class="game-card">
+                    <div class="card-icon">📷</div>
+                    <h3>Player Cards</h3>
+                    <p>Create AI-style football trading cards</p>
+                    <span class="card-badge">New!</span>
+                </a>
+
+                <a href="/MemoryMatch" class="game-card">
+                    <div class="card-icon">🪪</div>
+                    <h3>Memory Match</h3>
+                    <p>Match pairs of football badges and players</p>
+                    <span class="card-badge">20 Cards</span>
+                </a>
+            </div>
+        </div>
+    </section>
+</div>

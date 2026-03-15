@@ -1,0 +1,91 @@
+﻿@page
+@model WebApplication1.Areas.Identity.Pages.Account.LoginModel
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<link rel="stylesheet" href="~/css/auth-global.css" />
+
+<div class="auth-page">
+    <div class="container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h2>Welcome Back</h2>
+                <p>Log in to continue your MASCK journey.</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="auth-panel">
+                        <h3>Log in</h3>
+
+                        <form id="account" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                            <div class="auth-form-group">
+                                <label asp-for="Input.Email" class="auth-label"></label>
+                                <input asp-for="Input.Email" class="form-control auth-input" autocomplete="username" />
+                                <span asp-validation-for="Input.Email" class="text-danger small"></span>
+                            </div>
+
+                            <div class="auth-form-group">
+                                <label asp-for="Input.Password" class="auth-label"></label>
+                                <input asp-for="Input.Password" class="form-control auth-input" autocomplete="current-password" />
+                                <span asp-validation-for="Input.Password" class="text-danger small"></span>
+                            </div>
+
+                            <div class="auth-checkbox">
+                                <label asp-for="Input.RememberMe">
+                                    <input asp-for="Input.RememberMe" />
+                                    Remember me
+                                </label>
+                            </div>
+
+                            <button id="login-submit" type="submit" class="btn auth-primary-btn w-100">
+                                Log in
+                            </button>
+
+                            <div class="auth-links">
+                                <a asp-page="./ForgotPassword">Forgot your password?</a>
+                                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                                <a asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="auth-panel auth-panel-secondary">
+                        <h3>Other sign in options</h3>
+
+                        @if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                        {
+                            <div class="auth-empty-state">
+                                <div class="auth-empty-icon">🔐</div>
+                                <p>No external authentication services are configured.</p>
+                                <span>Use your local MASCK account to sign in.</span>
+                            </div>
+                        }
+                        else
+                        {
+                            <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="d-grid gap-2">
+                                @foreach (var provider in Model.ExternalLogins!)
+
+                                {
+                                    <button type="submit" class="btn auth-secondary-btn" name="provider" value="@provider.Name">
+                                        Log in with @provider.DisplayName
+                                    </button>
+                                }
+                                @Html.AntiForgeryToken()
+                            </form>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

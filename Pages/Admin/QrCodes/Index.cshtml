@@ -5,130 +5,169 @@
     ViewData["Title"] = "QR Codes (Admin)";
 }
 
-<div class="masck-hero mb-4">
-    <div class="d-flex flex-column flex-md-row justify-content-between gap-3 align-items-md-center">
-        <div>
-            <h1 class="fw-bold mb-1">QR Codes</h1>
-            <div class="text-muted">Generate reward QR codes, toggle active status, and manage claim links.</div>
+<link rel="stylesheet" href="~/css/qr-admin.css" />
+
+<div class="qr-admin-page">
+    <div class="container">
+
+        <div class="section-heading text-center mb-4">
+            <h2>QR Rewards Admin</h2>
+            <p>Create reward QR codes, choose points, redirect users to a page, and manage active claim links.</p>
         </div>
 
-        <div class="masck-badge">
-            Admin Panel
-        </div>
-    </div>
-</div>
-
-@if (!ViewData.ModelState.IsValid)
-{
-    <div class="alert alert-danger">
-        @foreach (var err in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        @if (!ViewData.ModelState.IsValid)
         {
-            <div>@err.ErrorMessage</div>
-        }
-    </div>
-}
-
-<div class="card masck-card p-4 mb-4">
-    <h5 class="fw-bold mb-3">Create QR Code</h5>
-
-    <form method="post" asp-page-handler="Create" class="row g-3 align-items-end">
-        <div class="col-lg-6">
-            <label class="form-label text-muted">Custom code (optional)</label>
-            <input class="form-control input-masck" asp-for="CustomCode" placeholder="Leave blank for random (e.g. MATCHDAY01)" />
-        </div>
-
-        <div class="col-lg-2">
-            <label class="form-label text-muted">Points</label>
-            <input class="form-control input-masck" asp-for="PointsValue" type="number" min="1" />
-        </div>
-
-        <div class="col-lg-2">
-            <label class="form-label text-muted">Active</label>
-            <select class="form-select input-masck" asp-for="IsActive">
-                <option value="true">Yes</option>
-                <option value="false">No</option>
-            </select>
-        </div>
-
-        <div class="col-lg-2 d-grid">
-            <button class="btn btn-masck" type="submit">
-                Create
-            </button>
-        </div>
-    </form>
-</div>
-
-<div class="card masck-card p-4">
-    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2 mb-3">
-        <h5 class="fw-bold mb-0">Existing Codes</h5>
-        <div class="text-muted">Total: <span class="fw-bold">@Model.Codes.Count</span></div>
-    </div>
-
-    <div class="table-responsive">
-        <table class="table masck-table align-middle mb-0">
-            <thead>
-                <tr>
-                    <th style="width:70px;">ID</th>
-                    <th style="min-width:160px;">Code</th>
-                    <th style="width:90px;">Points</th>
-                    <th style="width:110px;">Status</th>
-                    <th>Claim URL</th>
-                    <th class="text-end" style="width:250px;">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var q in Model.Codes)
+            <div class="alert alert-danger rounded-4 shadow-sm">
+                @foreach (var err in ViewData.ModelState.Values.SelectMany(v => v.Errors))
                 {
-                    var claimUrl = $"/Qr/Claim?code={q.Code}";
-                    <tr>
-                        <td class="text-muted">@q.Id</td>
-                        <td class="fw-bold"><span class="masck-code">@q.Code</span></td>
-                        <td>@q.PointsValue</td>
-                        <td>
-                            @if (q.IsActive)
-                            {
-                                <span class="masck-pill masck-pill-green">Active</span>
-                            }
-                            else
-                            {
-                                <span class="masck-pill masck-pill-gray">Inactive</span>
-                            }
-                        </td>
-                        <td>
-                            <div class="d-flex align-items-center gap-2">
-                                <code class="masck-claim">@claimUrl</code>
-                                <button type="button"
-                                        class="btn btn-sm btn-outline-light"
-                                        onclick="copyText('@claimUrl')">
-                                    Copy
-                                </button>
-                                <a class="btn btn-sm btn-outline-light" target="_blank" href="@claimUrl">
-                                    Open
-                                </a>
-                            </div>
-                        </td>
-                        <td class="text-end">
-                            <div class="d-inline-flex gap-2">
-                                <form method="post" class="d-inline" asp-page-handler="Toggle">
-                                    <input type="hidden" name="id" value="@q.Id" />
-                                    <button class="btn btn-sm btn-masck-secondary" type="submit">
-                                        Toggle
-                                    </button>
-                                </form>
-
-                                <form method="post" class="d-inline" asp-page-handler="Delete"
-                                      onsubmit="return confirm('Delete this QR code?');">
-                                    <input type="hidden" name="id" value="@q.Id" />
-                                    <button class="btn btn-sm btn-masck-danger" type="submit">
-                                        Delete
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
+                    <div>@err.ErrorMessage</div>
                 }
-            </tbody>
-        </table>
+            </div>
+        }
+
+        <div class="card qr-admin-card mb-4">
+            <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+                    <h4 class="fw-bold mb-0">Create QR Code</h4>
+                    <span class="qr-admin-badge">Admin Panel</span>
+                </div>
+
+                <form method="post" asp-page-handler="Create" class="row g-3 align-items-end">
+
+                    <div class="col-lg-4">
+                        <label class="form-label qr-label">Title</label>
+                        <input class="form-control qr-input" asp-for="Title" placeholder="e.g. Matchday Reward" />
+                    </div>
+
+                    <div class="col-lg-3">
+                        <label class="form-label qr-label">Custom code (optional)</label>
+                        <input class="form-control qr-input" asp-for="CustomCode" placeholder="e.g. MATCHDAY01" />
+                    </div>
+
+                    <div class="col-lg-2">
+                        <label class="form-label qr-label">Points</label>
+                        <input class="form-control qr-input" asp-for="PointsValue" type="number" min="1" />
+                    </div>
+
+                    <div class="col-lg-3">
+                        <label class="form-label qr-label">Redirect page</label>
+                        <input class="form-control qr-input" asp-for="RedirectUrl" placeholder="/QuizGames" />
+                    </div>
+
+                    <div class="col-lg-2">
+                        <label class="form-label qr-label">Active</label>
+                        <select class="form-select qr-input" asp-for="IsActive">
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-3 d-grid">
+                        <button class="btn qr-create-btn" type="submit">
+                            Create QR Code
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="card qr-admin-card">
+            <div class="card-body p-4">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2 mb-3">
+                    <h4 class="fw-bold mb-0">Existing Codes</h4>
+                    <div class="text-muted">Total: <span class="fw-bold">@Model.Codes.Count</span></div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table qr-table align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th style="width:70px;">ID</th>
+                                <th style="min-width:140px;">Title</th>
+                                <th style="min-width:140px;">Code</th>
+                                <th style="width:90px;">Points</th>
+                                <th style="width:110px;">Status</th>
+                                <th style="min-width:140px;">Redirect</th>
+                                <th style="min-width:260px;">Claim URL</th>
+                                <th class="text-end" style="width:250px;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var q in Model.Codes)
+                            {
+                                var claimUrl = $"/Qr/Claim?code={q.Code}";
+                                <tr>
+                                    <td class="text-muted">@q.Id</td>
+
+                                    <td class="fw-semibold">
+                                        @(string.IsNullOrWhiteSpace(q.Title) ? "Untitled QR" : q.Title)
+                                    </td>
+
+                                    <td>
+                                        <span class="qr-code-pill">@q.Code</span>
+                                    </td>
+
+                                    <td>
+                                        <span class="qr-points-pill">+@q.PointsValue</span>
+                                    </td>
+
+                                    <td>
+                                        @if (q.IsActive)
+                                        {
+                                            <span class="qr-status active">Active</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="qr-status inactive">Inactive</span>
+                                        }
+                                    </td>
+
+                                    <td>
+                                        <code class="qr-redirect-code">@(string.IsNullOrWhiteSpace(q.RedirectUrl) ? "/PlayGames" : q.RedirectUrl)</code>
+                                    </td>
+
+                                    <td>
+                                        <div class="d-flex flex-column gap-2">
+                                            <code class="qr-claim-url">@claimUrl</code>
+                                            <div class="d-flex gap-2 flex-wrap">
+                                                <button type="button"
+                                                        class="btn btn-sm qr-action-btn"
+                                                        onclick="copyText('@claimUrl')">
+                                                    Copy
+                                                </button>
+                                                <a class="btn btn-sm qr-action-btn-outline" target="_blank" href="@claimUrl">
+                                                    Open
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td class="text-end">
+                                        <div class="d-inline-flex gap-2 flex-wrap justify-content-end">
+                                            <form method="post" class="d-inline" asp-page-handler="Toggle">
+                                                <input type="hidden" name="id" value="@q.Id" />
+                                                <button class="btn btn-sm qr-action-btn-outline" type="submit">
+                                                    Toggle
+                                                </button>
+                                            </form>
+
+                                            <form method="post" class="d-inline" asp-page-handler="Delete"
+                                                  onsubmit="return confirm('Delete this QR code?');">
+                                                <input type="hidden" name="id" value="@q.Id" />
+                                                <button class="btn btn-sm qr-delete-btn" type="submit">
+                                                    Delete
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
@@ -142,14 +181,15 @@
 
         function toast(message) {
             const el = document.createElement("div");
-            el.className = "masck-toast";
+            el.className = "qr-toast";
             el.textContent = message;
             document.body.appendChild(el);
+
             setTimeout(() => el.classList.add("show"), 10);
             setTimeout(() => {
                 el.classList.remove("show");
                 setTimeout(() => el.remove(), 250);
-            }, 1400);
+            }, 1600);
         }
     </script>
 }

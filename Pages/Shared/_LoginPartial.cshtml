@@ -4,22 +4,19 @@
 @inject UserManager<ApplicationUser> UserManager
 
 @{
-    int points = 0;
+    // Only query the DB when the user is signed in
+    var points = 0;
 
     if (SignInManager.IsSignedIn(User))
     {
         var userEntity = await UserManager.GetUserAsync(User);
-        if (userEntity != null)
-        {
-            points = userEntity.Points;
-        }
+        points = userEntity?.Points ?? 0;
     }
 }
 
 @if (SignInManager.IsSignedIn(User))
 {
     <div class="masck-account">
-
         <span class="masck-points">Points: @points</span>
 
         <a class="masck-account-btn" asp-page="/Profile">
@@ -30,7 +27,6 @@
         <form class="masck-logout" asp-area="Identity" asp-page="/Account/Logout" method="post">
             <button type="submit" class="masck-link-btn">Logout</button>
         </form>
-
     </div>
 }
 else
